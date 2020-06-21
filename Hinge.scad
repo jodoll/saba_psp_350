@@ -67,3 +67,22 @@ union(){
     }
 }
 
+module outer_bearing (){
+    rotate([0, 90, 0]){
+        difference(){
+            union(){
+                cylinder(h=4, r=5.5, $fn=30);
+                translate([7, -1, 2]){
+                    rotate([0, 0, 90]){
+                        linear_extrude(height = 4, center = true, convexity = 10, twist = 0)
+                            polygon(points=[[0,0],[15,0],[0,12]], paths=[[0,1,2]]);
+                    }
+                }
+            }
+            cylinder(h=4, r=2.1, $fn=30);
+        }
+    }
+}
+
+translate([3.7, 1, 15.8]) outer_bearing();
+translate([37.3, 1, 15.8]) outer_bearing();
