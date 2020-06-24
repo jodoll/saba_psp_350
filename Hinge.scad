@@ -73,3 +73,9 @@ module lid(){
 }
 
 translate([10.5, -0.8, 20.5]) lid();
+
+module lid_support(){
+    cube([24, 3, 3.7]);
+}
+
+translate([10.5, 15.2, 10]) lid_support(); 
