@@ -41,17 +41,18 @@ union(){
             ],
             convexity = 50
         );
-//        // Rounded Corners
-//        translate([0, 28, 0])
-//            difference(){
-//                cube([2, 2, 10]);
-//                translate([2, 0, 0]) cylinder(h=10, r=2, $fn=30);
-//            }
-//        translate([43, 28, 0])
-//            difference(){
-//                cube([2, 2, 10]);
-//                cylinder(h=10, r=2, $fn=30);
-//            }
+        translate([13.6, 0, 8.5]) cube([17.7, 5.5, 1.5]);
+        // Rounded Corners
+        translate([0, 28, 0])
+            difference(){
+                cube([2, 2, 10]);
+                translate([2, 0, 0]) cylinder(h=10, r=2, $fn=30);
+            }
+        translate([43, 28, 0])
+            difference(){
+                cube([2, 2, 10]);
+                cylinder(h=10, r=2, $fn=30);
+            }
     }
     translate([6.5, 24, 2.75]){
         cylinder(h = 1, r = 2.5, $fn=30);
@@ -83,18 +84,18 @@ module outer_bearing (){
 
 module inner_bearing() {
     rotate([90, 0, 90]) union(){
-        translate([1, 5.5, 0]) cylinder(h=3, r=5.5, $fn=30);
-        linear_extrude(height=2.1, center=false, convexity=10, twist=0)
+        translate([1, 5.5, 0]) cylinder(h=3.1, r=5.5, $fn=30);
+        linear_extrude(height=2.5, center=false, convexity=10, twist=0)
             polygon(points=[[0, -0.5], [-7.3, 7], [-6.4, 8.2], [0, 12], [30, -2]], paths=[[0, 1, 2, 3, 4, 5]]);
     }
 }
 
 difference(){
     union(){
-        translate([3.7, 1, 15.8]) outer_bearing();
-        translate([37.3, 1, 15.8]) outer_bearing();
-        translate([10, 0, 10.3]) inner_bearing();
-        translate([35, 0, 10.3]) mirror([1, 0, 0]) inner_bearing();
+        translate([4, 1, 15.8]) outer_bearing();
+        translate([37, 1, 15.8]) outer_bearing();
+        translate([10.5, 0, 10.3]) inner_bearing();
+        translate([34.5, 0, 10.3]) mirror([1, 0, 0]) inner_bearing();
     }
     translate([0, 1, 15.8]) rotate([0, 90, 0]) cylinder(h=45, r=2.1, $fn=30);
 }
@@ -103,15 +104,15 @@ module lid(){
     polyhedron(
         points=[
             //Top
-            [10, 0, 12],
-            [35, 0, 12],
-            [35, 30, -2],
-            [10, 30, -2],
+            [10.5, 0, 12],
+            [34.5, 0, 12],
+            [34.5, 30, -2],
+            [10.5, 30, -2],
             //Bottom
-            [10, 0, 10],
-            [35, 0, 10],
-            [35, 30, -4],
-            [10, 30, -4]
+            [10.5, 0, 10],
+            [34.5, 0, 10],
+            [34.5, 30, -4],
+            [10.5, 30, -4]
         ],
         faces=[
             [0, 1, 2, 3],
