@@ -3,7 +3,7 @@ module bracket_side(){
 }
 
 module pin(){
-    cylinder(h = 1, r = 2.5, $fn=30);
+    cylinder(h = 1, r = 2, $fn=30);
 }
 
 module raw_bracket(){
@@ -13,10 +13,10 @@ module raw_bracket(){
         translate([0, 0, 1]) cube([45, 3, 8]);
 
         //Pins
-        translate([6.5, 24, 2.75]) pin();
-        translate([6.5, 24, 6.25]) pin();
-        translate([38.5, 24, 2.75]) pin();
-        translate([38.5, 24, 6.25]) pin();
+        translate([9, 21, 2.75]) pin();
+        translate([9, 21, 6.25]) pin();
+        translate([36, 21, 2.75]) pin();
+        translate([36, 21, 6.25]) pin();
     }
 }
 
