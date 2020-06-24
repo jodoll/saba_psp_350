@@ -30,7 +30,7 @@ module corner_cutout(){
 difference(){
     raw_bracket();
     // Cutout between bearings
-    translate([13.6, 0, 8.5]) cube([17.7, 5.5, 1.5]);
+    translate([13.6, 0, 8.5]) rotate([6, 0, 0]) cube([17.7, 5.5, 1.5]);
     // Rounded Corners
     translate([2, 28, 0]) rotate([0, 0, 90]) corner_cutout();
     translate([43, 28, 0]) rotate([0, 0, 0]) corner_cutout();
