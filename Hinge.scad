@@ -69,20 +69,45 @@ union(){
 
 module outer_bearing (){
     rotate([0, 90, 0]){
-        difference(){
-            union(){
-                cylinder(h=4, r=5.5, $fn=30);
-                translate([7, -1, 2]){
-                    rotate([0, 0, 90]){
-                        linear_extrude(height = 4, center = true, convexity = 10, twist = 0)
-                            polygon(points=[[0,0],[15,0],[0,12]], paths=[[0,1,2]]);
-                    }
+        union(){
+            cylinder(h=4, r=5.5, $fn=30);
+            translate([7, -1, 2]){
+                rotate([0, 0, 90]){
+                    linear_extrude(height = 4, center = true, convexity = 10, twist = 0)
+                        polygon(points=[[0,0],[15,0],[0,12]], paths=[[0,1,2]]);
                 }
             }
-            cylinder(h=4, r=2.1, $fn=30);
         }
     }
 }
 
-translate([3.7, 1, 15.8]) outer_bearing();
-translate([37.3, 1, 15.8]) outer_bearing();
+module inner_bearing() {
+    rotate([90, 0, 90]) union(){
+        translate([1, 5.5, 0]) cylinder(h=3, r=5.5, $fn=30);
+        linear_extrude(height=2.1, center=false, convexity=10, twist=0)
+            polygon(points=[[0, -0.5], [-7.3, 7], [-6.4, 8.2], [0, 12], [30, -2]], paths=[[0, 1, 2, 3, 4, 5]]);
+    }
+}
+
+difference(){
+    union(){
+        translate([3.7, 1, 15.8]) outer_bearing();
+        translate([37.3, 1, 15.8]) outer_bearing();
+        translate([10, 0, 10.3]) inner_bearing();
+        translate([35, 0, 10.3]) mirror([1, 0, 0]) inner_bearing();
+    }
+    translate([0, 1, 15.8]) rotate([0, 90, 0]) cylinder(h=45, r=2.1, $fn=30);
+}
+
+module lid(){
+    polyhedron(
+        points=[
+            [10, 0, 12],
+            [35, 0, 12],
+            [35, 30, -2],
+            [10, 30, -2]
+        ],
+        faces=[[0, 1, 2, 3]]
+    );
+}
+translate([0, 0, 10.3]) lid();
